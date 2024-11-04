@@ -5,11 +5,21 @@ import TaskContainer from "./components/TaskContainer";
 import { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
 
-let savedTasks = JSON.parse(localStorage.getItem("tasks"));
-
-function App() {
+function App({ savedTasks }) {
   // Inizializzo l'elenco di task con l'elenco di task presenti in localStorage, OPPURE con un array vuoto)
   const [tasks, setTasks] = useState(savedTasks || []);
+  const [filter, setFilter] = useState("tutti");
+
+  // filtro l'elenco di task
+  let filteredTasks = tasks.filter((task) => {
+    // lo filtro in base alla stringa contenuta in filter
+    // "tutti" "rimasti" "completati"
+    // se il filtro è "rimasti", allora recupero i task con proprietà isCompleted: false
+    // ritorno il risultato alla variabile filteredTasks
+    if (filter === "completati") return task.isCompleted;
+    if (filter === "rimasti") return !task.isCompleted;
+    if (filter === "tutti") return true;
+  });
 
   useEffect(() => {
     // salvo i tasks in localStorage
@@ -55,12 +65,12 @@ function App() {
 
   return (
     <>
-      <h1>I miei task</h1>
+      <h1>I miei task {filter}</h1>
       <div className="task-app">
         <Form addTask={addTask} />
-        <Filters />
+        <Filters setFilter={setFilter} />
         <TaskContainer
-          tasks={tasks}
+          tasks={filteredTasks}
           deleteTask={deleteTask}
           updateTaskCompletion={updateTaskCompletion}
         />

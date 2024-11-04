@@ -11,7 +11,7 @@ export default function Task({
         checked={taskDetails.isCompleted}
         onChange={() => updateTaskCompletion(taskDetails.id)}
       />
-      {taskDetails.name} - {taskDetails.id}
+      {taskDetails.name}
       {/* <button className="btn">Modifica</button> */}
       <button className="btn" onClick={() => deleteTask(taskDetails.id)}>
         Elimina

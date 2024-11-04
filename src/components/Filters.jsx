@@ -1,10 +1,16 @@
-export default function Filters() {
+export default function Filters({ setFilter }) {
   return (
     <div className="filters-container">
       Filtra:
-      <button className="btn">Tutti</button>
-      <button className="btn">Rimasti</button>
-      <button className="btn">Completati</button>
+      <button onClick={() => setFilter("tutti")} className="btn">
+        Tutti
+      </button>
+      <button onClick={() => setFilter("rimasti")} className="btn">
+        Rimasti
+      </button>
+      <button onClick={() => setFilter("completati")} className="btn">
+        Completati
+      </button>
     </div>
   );
 }
