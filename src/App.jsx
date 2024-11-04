@@ -2,12 +2,19 @@ import Form from "./components/Form";
 import Filters from "./components/Filters";
 import TaskContainer from "./components/TaskContainer";
 // import dummyTasks from "./data/tasks";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
 
+let savedTasks = JSON.parse(localStorage.getItem("tasks"));
+
 function App() {
-  // Inizializzo l'elenco di task con un array vuoto)
-  const [tasks, setTasks] = useState([]);
+  // Inizializzo l'elenco di task con l'elenco di task presenti in localStorage, OPPURE con un array vuoto)
+  const [tasks, setTasks] = useState(savedTasks || []);
+
+  useEffect(() => {
+    // salvo i tasks in localStorage
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   // aggiungo un nuovo task all'array
   function addTask(inputText) {
