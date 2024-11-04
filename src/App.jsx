@@ -10,14 +10,13 @@ function App({ savedTasks }) {
   const [tasks, setTasks] = useState(savedTasks || []);
   const [filter, setFilter] = useState("tutti");
 
-  // filtro l'elenco di task
+  // filtro in base alla stringa contenuta in filter ("tutti" "rimasti" "completati")
   let filteredTasks = tasks.filter((task) => {
-    // lo filtro in base alla stringa contenuta in filter
-    // "tutti" "rimasti" "completati"
-    // se il filtro è "rimasti", allora recupero i task con proprietà isCompleted: false
-    // ritorno il risultato alla variabile filteredTasks
+    // se filter corrisponde a "completati", ritorno i task con proprietà isCompleted impostata a true
     if (filter === "completati") return task.isCompleted;
+    // se filter corrisponde a "rimasti", ritorno i task con proprietà isCompleted impostata a false (uso l'operatore NOT (!))
     if (filter === "rimasti") return !task.isCompleted;
+    // se filter corrisponde a "tutti", allora ritorno true per ogni task dell'array
     if (filter === "tutti") return true;
   });
 
@@ -65,7 +64,7 @@ function App({ savedTasks }) {
 
   return (
     <>
-      <h1>I miei task {filter}</h1>
+      <h1 className="text-2xl mt-16">I miei task {filter}</h1>
       <div className="task-app">
         <Form addTask={addTask} />
         <Filters setFilter={setFilter} />

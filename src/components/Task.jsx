@@ -5,7 +5,7 @@ export default function Task({
 }) {
   // ricevo i dettagli del task (id, name, isCompleted)
   return (
-    <li className={taskDetails.isCompleted ? "completed" : ""}>
+    <li className={taskDetails.isCompleted ? "bg-red-300" : "bg-zinc-300"}>
       <input
         type="checkbox"
         checked={taskDetails.isCompleted}
