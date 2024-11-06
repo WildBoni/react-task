@@ -64,8 +64,8 @@ function App({ savedTasks }) {
 
   return (
     <>
-      <h1 className="text-2xl mt-16">I miei task {filter}</h1>
-      <div className="task-app">
+      <h1 className="text-2xl mt-16 mb-4 text-center">I miei task: {filter}</h1>
+      <div className="bg-white max-w-screen-sm mx-auto p-4">
         <Form addTask={addTask} />
         <Filters setFilter={setFilter} />
         <TaskContainer

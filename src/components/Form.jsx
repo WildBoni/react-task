@@ -13,7 +13,11 @@ export default function Form({ addTask }) {
   return (
     <>
       <h2>Che cosa devi fare?</h2>
-      <input type="text" ref={inputRef} className="border border-gray-800" />
+      <input
+        type="text"
+        ref={inputRef}
+        className="border border-gray-400 p-2 mt-2 me-2 rounded-md"
+      />
       <Button text={"Aggiungi"} onClick={handleAddTask} />
     </>
   );

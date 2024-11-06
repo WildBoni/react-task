@@ -1,6 +1,6 @@
 export default function Filters({ setFilter }) {
   return (
-    <div className="filters-container">
+    <div className="filters-container flex gap-2 items-center my-4">
       Filtra:
       <button onClick={() => setFilter("tutti")} className="btn">
         Tutti
